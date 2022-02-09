@@ -10,6 +10,8 @@ const TopBar = styled.div`
     align-items: center;
     justify-content: space-between;
 
+    position: fixed;
+    top: 0
 
 `
 
