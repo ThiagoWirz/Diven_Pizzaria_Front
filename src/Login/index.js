@@ -5,21 +5,20 @@ import {
   StyledButton,
   StyledLink,
   LinkBox,
-} from "./style";
+} from "../SignUp/style";
 import logo from "../assets/icone.jpg";
 
-export default function SignUp() {
+export default function Login() {
   return (
     <Container>
       <img src={logo} alt="driven" />
       <Form>
-        <StyledInput placeholder="Nome" type="text" />
         <StyledInput placeholder="Email" type="email" />
         <StyledInput placeholder="Senha" type="password" />
-        <StyledButton>Cadastrar</StyledButton>
+        <StyledButton>Entrar</StyledButton>
       </Form>
       <LinkBox>
-        <StyledLink to="/sign-in">Já tem uma conta? Faça login!</StyledLink>
+        <StyledLink to="/sign-up">Não tem uma conta? Cadastre-se!</StyledLink>
         <StyledLink to="/">Voltar para Home</StyledLink>
       </LinkBox>
     </Container>
