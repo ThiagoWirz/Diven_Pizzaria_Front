@@ -1,33 +1,29 @@
 import styled from 'styled-components'
 import Header from '../Header'
 import { Link } from 'react-router-dom'
-import promo from '../assets/combo-perfeito-pizza.jpg'
-import promo2 from '../assets/promo2.jpg'
 import UserContext from '../contexts/userContext'
 import { useContext, useEffect, useState } from 'react'
-import axios from 'axios'
+import { getSales } from '../services/dirvenpizzaria'
+
 
 
 function Home() {
     const { user, setUser } = useContext(UserContext);
     const [sales, setSales] = useState([])
 
-
-    function getSales() {
-
-
-        const promise = axios.get("http://localhost:5000/sales")
+    function Sales() {
+        const promise = getSales();
         promise.then((res) => {
             setSales(res.data)
         })
         promise.catch((error) => {
             console.log(error.data)
         })
+
     }
+    useEffect((Sales), [])
 
-    useEffect((getSales), []);
 
-    console.log(sales)
 
     return (
         <>

@@ -12,5 +12,8 @@ function sigIn(formData) {
   const promise = axios.post(`${BASE_URL}/auth/sign-in`, formData);
   return promise;
 }
-
-export { signUp, sigIn };
+function getSales() {
+  const promise = axios.get("http://localhost:5000/sales")
+  return promise;
+}
+export { signUp, sigIn, getSales };
