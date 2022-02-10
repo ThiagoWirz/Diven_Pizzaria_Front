@@ -8,10 +8,11 @@ import {
   FinalPrice,
   ConfirmButton,
   Description,
+  RemoveButton,
 } from "./style";
 
 export default function CartPage() {
-  const { cart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
   const [total, setTotal] = useState("");
 
   function calcTotal() {
@@ -28,6 +29,11 @@ export default function CartPage() {
 
   useEffect(calcTotal, []);
 
+  function removeItem(i) {
+    cart.splice(i);
+    setCart([...cart]);
+  }
+
   return (
     <>
       <Header />
@@ -37,13 +43,14 @@ export default function CartPage() {
           {cart.length === 0 ? (
             <h1>Nenhum produto selecionado</h1>
           ) : (
-            cart.map((p) => (
+            cart.map((p, i) => (
               <Product>
                 <img src={p.image} alt={p.name} />
                 <Description>
                   <h2>{p.name}</h2>
                   <h3>R$ {p.price}</h3>{" "}
                 </Description>
+                <RemoveButton onClick={() => removeItem(i)}>X</RemoveButton>
               </Product>
             ))
           )}

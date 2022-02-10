@@ -27,6 +27,7 @@ const Product = styled.div`
   width: 90%;
   display: flex;
   gap: 3px;
+  align-items: center;
   h2 {
     font-weight: bold;
   }
@@ -56,4 +57,19 @@ const Description = styled.div`
   justify-content: center;
 `;
 
-export { Container, Order, Product, FinalPrice, ConfirmButton, Description };
+const RemoveButton = styled.button`
+  border: none;
+  position: absolute;
+  margin-left: 20px;
+  right: 20px;
+`;
+
+export {
+  Container,
+  Order,
+  Product,
+  FinalPrice,
+  ConfirmButton,
+  Description,
+  RemoveButton,
+};
