@@ -1,12 +1,15 @@
 import logo from "../assets/icone.jpg";
-import { User, Cart, Logo, ContainerRight, TopBar } from "./style";
+import { User, Cart, Logo, ContainerRight, TopBar, Counter } from "./style";
 import UserContext from "../contexts/userContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import CartContext from "../contexts/cartContext";
 
 function Header() {
   const { user, setUser } = useContext(UserContext);
+  const { cart } = useContext(CartContext);
   const navigate = useNavigate();
+  console.log(cart);
 
   function handleLogOut() {
     if (!user) {
@@ -28,6 +31,9 @@ function Header() {
       </Logo>
       <ContainerRight>
         <Cart to="/cart">
+          <Counter>
+            <span>{cart.length}</span>
+          </Counter>
           <ion-icon name="cart"></ion-icon>
         </Cart>
         <User onClick={handleLogOut}>
