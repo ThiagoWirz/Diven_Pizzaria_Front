@@ -13,7 +13,17 @@ function sigIn(formData) {
   return promise;
 }
 function getSales() {
-  const promise = axios.get("http://localhost:5000/sales")
+  const promise = axios.get(`${BASE_URL}/sales`)
   return promise;
 }
-export { signUp, sigIn, getSales };
+
+function getDrinks() {
+  const promiseDrinks = axios.get(`${BASE_URL}/drinks`);
+  return promiseDrinks
+}
+
+function getPizzas() {
+  const promisePizzas = axios.get(`${BASE_URL}/pizzas`)
+  return promisePizzas
+}
+export { signUp, sigIn, getSales, getDrinks, getPizzas };
