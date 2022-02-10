@@ -12,5 +12,18 @@ function sigIn(formData) {
   const promise = axios.post(`${BASE_URL}/auth/sign-in`, formData);
   return promise;
 }
+function getSales() {
+  const promise = axios.get(`${BASE_URL}/sales`)
+  return promise;
+}
 
-export { signUp, sigIn };
+function getDrinks() {
+  const promiseDrinks = axios.get(`${BASE_URL}/drinks`);
+  return promiseDrinks
+}
+
+function getPizzas() {
+  const promisePizzas = axios.get(`${BASE_URL}/pizzas`)
+  return promisePizzas
+}
+export { signUp, sigIn, getSales, getDrinks, getPizzas };
