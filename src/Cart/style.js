@@ -39,7 +39,7 @@ const Product = styled.div`
 `;
 
 const FinalPrice = styled.div`
-  margin: 20px 0px;
+  margin-top: 20px;
   font-weight: bold;
 `;
 
@@ -48,6 +48,7 @@ const ConfirmButton = styled.button`
   border-radius: 5px;
   padding: 15px;
   background-color: #92d5f7;
+  margin-top: 20px;
 `;
 
 const Description = styled.div`

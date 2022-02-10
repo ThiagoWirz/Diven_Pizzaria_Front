@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CartContext from "../contexts/cartContext";
 import Header from "../Header";
 import {
@@ -14,6 +15,7 @@ import {
 export default function CartPage() {
   const { cart, setCart } = useContext(CartContext);
   const [total, setTotal] = useState("");
+  const navigate = useNavigate();
 
   function calcTotal() {
     let sum = 0;
@@ -27,11 +29,17 @@ export default function CartPage() {
     setTotal(sumString);
   }
 
-  useEffect(calcTotal, []);
+  useEffect(calcTotal, [cart]);
 
   function removeItem(i) {
-    cart.splice(i);
-    setCart([...cart]);
+    if (window.confirm("Gostaria de remover esse item?")) {
+      cart.splice(i);
+      setCart([...cart]);
+    }
+  }
+
+  function confirmOrder() {
+    console.log("teste");
   }
 
   return (
@@ -59,7 +67,11 @@ export default function CartPage() {
           )}
         </Order>
 
-        <ConfirmButton>Finalizar Pedido</ConfirmButton>
+        <ConfirmButton
+          onClick={() => (cart.length === 0 ? navigate(-1) : confirmOrder())}
+        >
+          {cart.length === 0 ? "Voltar" : "Confirmar Pedido"}
+        </ConfirmButton>
       </Container>
     </>
   );
