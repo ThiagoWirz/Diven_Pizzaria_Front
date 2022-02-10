@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import styled from "styled-components"
+import UserContext from "../contexts/userContext";
 import Header from "../Header"
 import { getSales } from '../services/dirvenpizzaria'
-import { Link } from "react-router-dom";
+
 
 
 function Sales() {
     const [sales, setSales] = useState([])
+    const { user, setUser } = useContext(UserContext);
+    const navigate = useNavigate()
 
     function Sales() {
         const promise = getSales();
@@ -19,23 +24,46 @@ function Sales() {
 
     }
     useEffect((Sales), [])
+
+    function handleConfirm() {
+        if (window.confirm("Por favor, faça o login ou cadastre-se")) {
+            navigate("/sign-in")
+        }
+    }
+
     return (
         <>
             <Header />
             <Container>
                 <Description>Promoções</Description>
             </Container>
-            <ContainerSmalls>
-                {sales.map(function (pizza) {
-                    return (
-                        <PizzaSmall><img src={pizza.image} />
-                            <Name>{pizza.name}</Name>
-                            <Ingredients> {pizza.ingredient}<br></br></Ingredients>
-                            <Price>R${pizza.price}</Price>
-                        </PizzaSmall>
-                    )
-                })}
-            </ContainerSmalls>
+            {user ?
+                <ContainerSmalls>
+                    {sales.map(function (pizza) {
+                        return (
+                            <PizzaSmall><img src={pizza.image} />
+                                <Name>{pizza.name}</Name>
+                                <Ingredients> {pizza.ingredient}<br></br></Ingredients>
+                                <Price>R${pizza.price}</Price>
+                            </PizzaSmall>
+                        )
+                    })}
+                </ContainerSmalls>
+                :
+                <ContainerSmalls>
+                    {sales.map(function (pizza) {
+                        return (
+                            <PizzaSmallDiv onClick={handleConfirm} ><img src={pizza.image} />
+                                <Name>{pizza.name}</Name>
+                                <Ingredients> {pizza.ingredient}<br></br></Ingredients>
+                                <Price>R${pizza.price}</Price>
+                            </PizzaSmallDiv>
+                        )
+                    })}
+                </ContainerSmalls>
+
+
+            }
         </>
     )
 } export default Sales
@@ -87,3 +115,15 @@ const Ingredients = styled.div`
 const Price = styled.div`
     font-weight: 500;
 `
+const PizzaSmallDiv = styled.div`
+width: 150px;
+display: flex;
+flex-direction: column;
+
+
+  & img {
+    border-radius: 5px;
+    width: 150px;
+    height: 150px;
+  }
+`;

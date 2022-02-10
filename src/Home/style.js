@@ -44,10 +44,18 @@ const SaleSmall = styled(Link)`
     }
 `;
 
+const SaleSmallDiv = styled.div`
+    & img {
+        border-radius: 5px;
+        width: 150px;
+        height: 150px;
+    }
+`;
 export {
     SaleSmall,
     ContainerSmalls,
     ContainerSales,
     Selector,
-    ContainerSelection
+    ContainerSelection,
+    SaleSmallDiv
 }
