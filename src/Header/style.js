@@ -43,4 +43,21 @@ const User = styled.button`
   }
 `;
 
-export { User, Cart, Logo, ContainerRight, TopBar };
+const Counter = styled.div`
+  height: 16px;
+  width: 16px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span {
+    text-align: center;
+    font-size: 12px;
+  }
+`;
+
+export { User, Cart, Logo, ContainerRight, TopBar, Counter };
