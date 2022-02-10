@@ -29,8 +29,8 @@ export default function Login() {
     e.preventDefault();
     const promise = sigIn(formData);
     promise.then((response) => {
-      console.log(response.data);
       setUser(response.data);
+      localStorage.setItem("last-user", JSON.stringify(response.data));
       navigate("/");
     });
     promise.catch((error) => {

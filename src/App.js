@@ -8,7 +8,8 @@ import "./styles/style.css";
 import { useState } from "react";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const lastUser = JSON.parse(localStorage.getItem("last-user"));
+  const [user, setUser] = useState(lastUser);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
