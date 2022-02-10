@@ -1,52 +1,51 @@
-import styled from "styled-components";
-import Header from "../Header";
-import { Link } from "react-router-dom";
-import promo from "../assets/combo-perfeito-pizza.jpg";
-import promo2 from "../assets/promo2.jpg";
-import UserContext from "../contexts/userContext";
-import { useContext, useEffect, useState } from "react";
-import axios from "axios";
+
+import styled from 'styled-components'
+import Header from '../Header'
+import { Link } from 'react-router-dom'
+import UserContext from '../contexts/userContext'
+import { useContext, useEffect, useState } from 'react'
+import { getSales } from '../services/dirvenpizzaria'
+
+
 
 function Home() {
-  const { user, setUser } = useContext(UserContext);
-  const [sales, setSales] = useState([]);
+    const { user, setUser } = useContext(UserContext);
+    const [sales, setSales] = useState([])
 
-  function getSales() {
-    const promise = axios.get("http://localhost:5000/sales");
-    promise.then((res) => {
-      setSales(res.data);
-    });
-    promise.catch((error) => {
-      console.log(error.data);
-    });
-  }
+    function Sales() {
+        const promise = getSales();
+        promise.then((res) => {
+            setSales(res.data)
+        })
+        promise.catch((error) => {
+            console.log(error.data)
+        })
 
-  useEffect(getSales, []);
-  console.log(sales);
-  console.log(user);
+    }
+    useEffect((Sales), [])
 
-  return (
-    <>
-      <Header />
-      <ContainerSelection>
-        <Selector to="/menu">Cardápio</Selector>
-        <Selector to="/sales">Promoções</Selector>
-      </ContainerSelection>
-      <ContainerSales>
-        <ContainerSmalls>
-          {sales.map(function (sale) {
-            return (
-              <SaleSmall to="/sales">
-                <img src={sale.image} />
-              </SaleSmall>
-            );
-          })}
-        </ContainerSmalls>
-      </ContainerSales>
-    </>
-  );
-}
-export default Home;
+
+
+    return (
+        <>
+            <Header />
+            <ContainerSelection>
+                <Selector to='/menu'>Cardápio</Selector>
+                <Selector to='/sales'>Promoções</Selector>
+            </ContainerSelection>
+            <ContainerSales>
+                <ContainerSmalls>
+                    {sales.map(function (sale) {
+                        return (
+                            <SaleSmall to="/sales"><img src={sale.image} /></SaleSmall>
+                        )
+                    })}
+                </ContainerSmalls>
+            </ContainerSales>
+        </>
+    )
+} export default Home
+
 
 const ContainerSelection = styled.div`
   display: flex;
