@@ -24,6 +24,18 @@ flex-direction: column;
     height: 150px;
   }
 `;
+const PizzaSmallDiv = styled.div`
+width: 150px;
+display: flex;
+flex-direction: column;
+
+
+  & img {
+    border-radius: 5px;
+    width: 150px;
+    height: 150px;
+  }
+`;
 const Name = styled.div`
     margin-top: 5px;
     font-size: 17px;
@@ -55,5 +67,6 @@ export {
     Name,
     PizzaSmall,
     ContainerSmalls,
-    ContainerPizzas
+    ContainerPizzas,
+    PizzaSmallDiv
 }
