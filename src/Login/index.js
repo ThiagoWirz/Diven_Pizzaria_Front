@@ -7,14 +7,55 @@ import {
   LinkBox,
 } from "../SignUp/style";
 import logo from "../assets/icone.jpg";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { sigIn } from "../services/dirvenpizzaria";
+import UserContext from "../contexts/userContext";
 
 export default function Login() {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const navigate = useNavigate();
+  const { user, setUser } = useContext(UserContext);
+
+  function handleInputChange(e) {
+    formData[e.target.name] = e.target.value;
+    setFormData({ ...formData });
+  }
+
+  function handleSignIn(e) {
+    e.preventDefault();
+    const promise = sigIn(formData);
+    promise.then((response) => {
+      console.log(response.data);
+      setUser(response.data);
+      navigate("/");
+    });
+    promise.catch((error) => {
+      alert(error);
+    });
+  }
+
   return (
     <Container>
       <img src={logo} alt="driven" />
-      <Form>
-        <StyledInput placeholder="Email" type="email" />
-        <StyledInput placeholder="Senha" type="password" />
+      <Form onSubmit={handleSignIn}>
+        <StyledInput
+          onChange={handleInputChange}
+          value={formData.email}
+          name="email"
+          placeholder="Email"
+          type="email"
+        />
+        <StyledInput
+          onChange={handleInputChange}
+          value={formData.password}
+          name="password"
+          placeholder="Senha"
+          type="password"
+        />
         <StyledButton>Entrar</StyledButton>
       </Form>
       <LinkBox>
