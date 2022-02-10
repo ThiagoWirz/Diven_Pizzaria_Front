@@ -1,11 +1,34 @@
-
 import styled from 'styled-components'
 import Header from '../Header'
 import { Link } from 'react-router-dom'
 import promo from '../assets/combo-perfeito-pizza.jpg'
 import promo2 from '../assets/promo2.jpg'
+import UserContext from '../contexts/userContext'
+import { useContext, useEffect, useState } from 'react'
+import axios from 'axios'
+
 
 function Home() {
+    const { user, setUser } = useContext(UserContext);
+    const [sales, setSales] = useState([])
+
+
+    function getSales() {
+
+
+        const promise = axios.get("http://localhost:5000/sales")
+        promise.then((res) => {
+            setSales(res.data)
+        })
+        promise.catch((error) => {
+            console.log(error.data)
+        })
+    }
+
+    useEffect((getSales), []);
+
+    console.log(sales)
+
     return (
         <>
             <Header />
@@ -15,14 +38,12 @@ function Home() {
             </ContainerSelection>
             <ContainerSales>
                 <ContainerSmalls>
-                    <SaleSmall to="/sales"><img src={promo} /></SaleSmall>
-                    <SaleSmall to="/sales"><img src={promo} /></SaleSmall>
+                    {sales.map(function (sale) {
+                        return (
+                            <SaleSmall to="/sales"><img src={sale.image} /></SaleSmall>
+                        )
+                    })}
                 </ContainerSmalls>
-                <ContainerLargers>
-                    <SaleLarger to="/sales">
-                        <img src={promo2} />
-                    </SaleLarger>
-                </ContainerLargers>
             </ContainerSales>
         </>
     )
@@ -59,6 +80,7 @@ const ContainerSales = styled.div`
 `
 const ContainerSmalls = styled.div`
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         margin: 0 20px;
         gap: 10px;
@@ -73,21 +95,7 @@ const SaleSmall = styled(Link)`
     }
 
 `
-const ContainerLargers = styled.div`
-    margin-top: 20px;
 
-`
-const SaleLarger = styled(Link)`
-    & img{
-        width: 89%;
-        height: initial;
-        border-radius: 5px;
-        margin-left: 20px;
-        margin-right: 20px;
-
-    }
-
-`
 
 
 
