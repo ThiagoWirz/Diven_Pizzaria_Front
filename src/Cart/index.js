@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CartContext from "../contexts/cartContext";
+import UserContext from "../contexts/userContext";
 import Header from "../Header";
 import {
   Container,
@@ -18,6 +19,7 @@ import {
 
 export default function CartPage() {
   const { cart, setCart } = useContext(CartContext);
+  const { user, setUser } = useContext(UserContext);
   const [total, setTotal] = useState("");
   const [formData, setFormData] = useState({
     street: "",
@@ -46,10 +48,9 @@ export default function CartPage() {
   }
 
   useEffect(calcTotal, [cart]);
-
   function removeItem(i) {
     if (window.confirm("Gostaria de remover esse item?")) {
-      cart.splice(i);
+      cart.splice(i, 1);
       setCart([...cart]);
     }
   }

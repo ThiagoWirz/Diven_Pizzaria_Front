@@ -5,12 +5,14 @@ import styled from "styled-components"
 import UserContext from "../contexts/userContext";
 import Header from "../Header"
 import { getSales } from '../services/dirvenpizzaria'
+import CartContext from "../contexts/cartContext";
 
 
 
 function Sales() {
     const [sales, setSales] = useState([])
     const { user, setUser } = useContext(UserContext);
+    const { cart, setCart } = useContext(CartContext);
     const navigate = useNavigate()
 
     function Sales() {
@@ -30,6 +32,9 @@ function Sales() {
             navigate("/sign-in")
         }
     }
+    function addCart(id) {
+        setCart([...cart, id])
+    }
 
     return (
         <>
@@ -41,7 +46,7 @@ function Sales() {
                 <ContainerSmalls>
                     {sales.map(function (pizza) {
                         return (
-                            <PizzaSmall><img src={pizza.image} />
+                            <PizzaSmall onClick={() => addCart(pizza)}><img src={pizza.image} />
                                 <Name>{pizza.name}</Name>
                                 <Ingredients> {pizza.ingredient}<br></br></Ingredients>
                                 <Price>R${pizza.price}</Price>
