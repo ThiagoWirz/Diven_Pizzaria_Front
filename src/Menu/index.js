@@ -4,6 +4,7 @@ import UserContext from '../contexts/userContext'
 import { useContext, useEffect, useState } from 'react'
 import { getDrinks, getPizzas } from '../services/dirvenpizzaria'
 import { Description, Price, Ingredients, Name, PizzaSmall, ContainerSmalls, ContainerPizzas, PizzaSmallDiv } from "./style"
+import CartContext from '../contexts/cartContext'
 
 
 function Menu() {
@@ -11,6 +12,7 @@ function Menu() {
     const [drinks, setDrinks] = useState([]);
     const [pizzasSalgadas, setPizzasSalgadas] = useState([])
     const [pizzasDoces, setPizzasDoces] = useState([])
+    const { cart, setCart } = useContext(CartContext);
     const { user } = useContext(UserContext)
     const navigate = useNavigate()
 
@@ -57,6 +59,11 @@ function Menu() {
 
     useEffect((Products), [])
 
+    function addCart(id) {
+
+        setCart([...cart, id])
+    }
+
     return (
 
         <>
@@ -69,7 +76,7 @@ function Menu() {
                         <ContainerSmalls>
                             {pizzasSalgadas.map(function (pizza) {
                                 return (
-                                    <PizzaSmall><img src={pizza.image} />
+                                    <PizzaSmall onClick={() => addCart(pizza)}><img src={pizza.image} />
                                         <Name>{pizza.name}</Name>
                                         <Ingredients>Ingredientes: {pizza.ingredient}<br></br></Ingredients>
                                         <Price>R${pizza.price}</Price>
@@ -81,7 +88,7 @@ function Menu() {
                         <ContainerSmalls>
                             {pizzasDoces.map(function (pizza) {
                                 return (
-                                    <PizzaSmall><img src={pizza.image} />
+                                    <PizzaSmall onClick={() => addCart(pizza)}><img src={pizza.image} />
                                         <Name>{pizza.name}</Name>
                                         <Ingredients>Ingredientes: {pizza.ingredient}<br></br></Ingredients>
                                         <Price>R${pizza.price}</Price>
@@ -93,7 +100,7 @@ function Menu() {
                         <ContainerSmalls>
                             {drinks.map((drink) => {
                                 return (
-                                    <PizzaSmall><img src={drink.image} />
+                                    <PizzaSmall onClick={() => addCart(drink)}><img src={drink.image} />
                                         <Name>{drink.name}</Name>
                                         <Price>R${drink.price}</Price>
                                     </PizzaSmall>
