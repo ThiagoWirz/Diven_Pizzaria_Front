@@ -7,9 +7,8 @@ import CartContext from "../contexts/cartContext";
 
 function Header() {
   const { user, setUser } = useContext(UserContext);
-  const { cart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
   const navigate = useNavigate();
-  console.log(cart);
 
   function handleLogOut() {
     if (!user) {
@@ -20,6 +19,7 @@ function Header() {
       ) {
         localStorage.setItem("last-user", null);
         setUser(null);
+        setCart([]);
         navigate("/sign-in");
       }
     }
@@ -30,12 +30,15 @@ function Header() {
         <img src={logo} />
       </Logo>
       <ContainerRight>
-        <Cart to="/cart">
-          <Counter>
-            <span>{cart.length}</span>
-          </Counter>
-          <ion-icon name="cart"></ion-icon>
-        </Cart>
+        {user && (
+          <Cart to="/cart">
+            <Counter>
+              <span>{cart.length}</span>
+            </Counter>
+            <ion-icon name="cart"></ion-icon>
+          </Cart>
+        )}
+
         <User onClick={handleLogOut}>
           <ion-icon name="person-sharp"></ion-icon>
         </User>

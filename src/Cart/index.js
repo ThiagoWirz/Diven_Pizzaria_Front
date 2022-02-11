@@ -61,14 +61,12 @@ export default function CartPage() {
     e.preventDefault();
     const promise = postOrder(formData, config);
     promise.then(() => {
-      alert("Compra realizada com sucesso");
+      alert("Pedido feito com sucesso");
       setCart([]);
       navigate("/");
     });
-    promise.catch(() => {
-      alert("Compra realizada com sucesso");
-      setCart([]);
-      navigate("/");
+    promise.catch((error) => {
+      alert(error);
     });
   }
 
