@@ -48,7 +48,7 @@ const ConfirmButton = styled.button`
   border-radius: 5px;
   padding: 15px;
   background-color: #92d5f7;
-  margin-top: 20px;
+  margin: 20px 0px;
 `;
 
 const Description = styled.div`

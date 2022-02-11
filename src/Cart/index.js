@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CartContext from "../contexts/cartContext";
 import UserContext from "../contexts/userContext";
 import Header from "../Header";
+import { postOrder } from "../services/dirvenpizzaria";
 import {
   Container,
   Order,
@@ -28,6 +29,7 @@ export default function CartPage() {
     payment: "",
   });
   const navigate = useNavigate();
+  const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
   function handleInputChange(e) {
     formData[e.target.name] = e.target.value;
@@ -57,7 +59,17 @@ export default function CartPage() {
 
   function confirmOrder(e) {
     e.preventDefault();
-    console.log("teste");
+    const promise = postOrder(formData, config);
+    promise.then(() => {
+      alert("Compra realizada com sucesso");
+      setCart([]);
+      navigate("/");
+    });
+    promise.catch(() => {
+      alert("Compra realizada com sucesso");
+      setCart([]);
+      navigate("/");
+    });
   }
 
   return (

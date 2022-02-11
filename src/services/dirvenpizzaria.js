@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const BASE_URL = "https://driven-pizzaria.herokuapp.com";
-// const BASE_URL = "http://localhost:5000";
 
 function signUp(formData) {
   const promise = axios.post(`${BASE_URL}/auth/sign-up`, formData);
@@ -13,22 +12,22 @@ function sigIn(formData) {
   return promise;
 }
 function getSales() {
-  const promise = axios.get(`${BASE_URL}/sales`)
+  const promise = axios.get(`${BASE_URL}/sales`);
   return promise;
 }
 
 function getDrinks() {
   const promiseDrinks = axios.get(`${BASE_URL}/drinks`);
-  return promiseDrinks
+  return promiseDrinks;
 }
 
 function getPizzas() {
-  const promisePizzas = axios.get(`${BASE_URL}/pizzas`)
-  return promisePizzas
+  const promisePizzas = axios.get(`${BASE_URL}/pizzas`);
+  return promisePizzas;
 }
 
-function postOrder() {
-  const promise = axios.post(`${BASE_URL}/cart`)
-  return promise
+function postOrder(formData, config) {
+  const promise = axios.post(`${BASE_URL}/orders`, formData, config);
+  return promise;
 }
 export { signUp, sigIn, getSales, getDrinks, getPizzas, postOrder };
