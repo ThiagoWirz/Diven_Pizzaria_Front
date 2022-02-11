@@ -26,4 +26,9 @@ function getPizzas() {
   const promisePizzas = axios.get(`${BASE_URL}/pizzas`)
   return promisePizzas
 }
-export { signUp, sigIn, getSales, getDrinks, getPizzas };
+
+function postOrder() {
+  const promise = axios.post(`${BASE_URL}/cart`)
+  return promise
+}
+export { signUp, sigIn, getSales, getDrinks, getPizzas, postOrder };
