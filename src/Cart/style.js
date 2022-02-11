@@ -65,6 +65,64 @@ const RemoveButton = styled.button`
   right: 20px;
 `;
 
+const InfoInputs = styled.div`
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  margin-top: 30px;
+  text-align: left;
+  gap: 10px;
+  margin: 0px 10px;
+`;
+
+const BigInput = styled.input`
+  all: unset;
+  box-sizing: border-box;
+
+  width: 98%;
+  height: 30px;
+  padding: 18px;
+
+  border: solid 1px #aaaaaa;
+  background-color: #ffffff;
+  border-radius: 5px;
+  background-color: #ffffff;
+
+  color: #000000;
+  ::placeholder {
+    color: #777777;
+  }
+`;
+
+const SmallInput = styled.input`
+  all: unset;
+  box-sizing: border-box;
+
+  width: 60%;
+  height: 30px;
+  padding: 18px;
+
+  border-radius: 5px;
+  border: solid 1px #aaaaaa;
+  background-color: #ffffff;
+
+  color: #000000;
+  ::placeholder {
+    color: #777777;
+  }
+`;
+const Form = styled.form`
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  p {
+    font-weight: bold;
+  }
+`;
+
 export {
   Container,
   Order,
@@ -73,4 +131,8 @@ export {
   ConfirmButton,
   Description,
   RemoveButton,
+  InfoInputs,
+  BigInput,
+  SmallInput,
+  Form,
 };
