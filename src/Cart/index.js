@@ -16,7 +16,7 @@ import {
 
 export default function CartPage() {
   const { cart, setCart } = useContext(CartContext);
-  const { user, setUser } = useContext(UserContext)
+  const { user, setUser } = useContext(UserContext);
   const [total, setTotal] = useState("");
   const navigate = useNavigate();
 
@@ -40,14 +40,12 @@ export default function CartPage() {
     }
   }
 
-
   function confirmOrder() {
     console.log("teste");
   }
 
   // function order() {
   //   const body = { cart }
-
 
   //   const header = {
   //     headers: {
