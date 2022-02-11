@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import CartContext from "../contexts/cartContext";
 import UserContext from "../contexts/userContext";
 import Header from "../Header";
-import { postOrder } from "../services/dirvenpizzaria";
 import {
   Container,
   Order,
@@ -35,7 +34,7 @@ export default function CartPage() {
   useEffect(calcTotal, [cart]);
   function removeItem(i) {
     if (window.confirm("Gostaria de remover esse item?")) {
-      cart.splice(i);
+      cart.splice(i, 1);
       setCart([...cart]);
     }
   }
@@ -43,25 +42,6 @@ export default function CartPage() {
   function confirmOrder() {
     console.log("teste");
   }
-
-  // function order() {
-  //   const body = { cart }
-
-  //   const header = {
-  //     headers: {
-  //       "authorization": `Bearer ${user.token}`
-  //     }
-  //   }
-
-  //   const promise = postOrder(body, header)
-  //   promise.then(() => {
-  //     console.log("Deu certo")
-  //   })
-  //   promise.catch((error) => alert(error))
-
-  // }
-
-  // useEffect((order), [])
 
   return (
     <>
