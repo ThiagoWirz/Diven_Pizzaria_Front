@@ -27,6 +27,7 @@ export default function CartPage() {
     number: "",
     compliment: "",
     payment: "",
+    cart,
   });
   const navigate = useNavigate();
   const config = { headers: { Authorization: `Bearer ${user.token}` } };
@@ -131,7 +132,7 @@ export default function CartPage() {
                   id="cash"
                   value="cash"
                 />
-                <label for="cash">Dinheiro</label>
+                <label htmlFor="cash">Dinheiro</label>
               </div>
               <div>
                 <input
@@ -141,7 +142,7 @@ export default function CartPage() {
                   id="credit-card"
                   value="credit-card"
                 />
-                <label for="credit-card">Cartão de Crédito</label>
+                <label htmlFor="credit-card">Cartão de Crédito</label>
               </div>
               <div>
                 <input
@@ -151,7 +152,7 @@ export default function CartPage() {
                   id="debit-cart"
                   value="debit-cart"
                 />
-                <label for="debit-card">Cartão de Débito</label>
+                <label htmlFor="debit-card">Cartão de Débito</label>
               </div>
               <div>
                 <input
@@ -161,7 +162,7 @@ export default function CartPage() {
                   id="pix"
                   value="pix"
                 />
-                <label for="pix">Pix</label>
+                <label htmlFor="pix">Pix</label>
               </div>
             </InfoInputs>
 
