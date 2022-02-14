@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CartContext from "../contexts/cartContext";
-import UserContext from "../contexts/userContext";
-import Header from "../Header";
-import { postOrder } from "../services/dirvenpizzaria";
+import CartContext from "../../contexts/cartContext";
+import UserContext from "../../contexts/userContext";
+import Header from "../../Components/Header";
+import { postOrder } from "../../services/dirvenpizzaria";
 import {
   Container,
   Order,
@@ -20,7 +20,7 @@ import {
 
 export default function CartPage() {
   const { cart, setCart } = useContext(CartContext);
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [total, setTotal] = useState("");
   const [formData, setFormData] = useState({
     street: "",
@@ -35,7 +35,6 @@ export default function CartPage() {
   function handleInputChange(e) {
     formData[e.target.name] = e.target.value;
     setFormData({ ...formData });
-    console.log(formData);
   }
 
   function calcTotal() {

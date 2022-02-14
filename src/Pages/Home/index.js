@@ -1,7 +1,7 @@
-import Header from "../Header";
-import UserContext from "../contexts/userContext";
+import Header from "../../Components/Header";
+import UserContext from "../../contexts/userContext";
 import { useContext, useEffect, useState } from "react";
-import { getSales, getOrder } from "../services/dirvenpizzaria";
+import { getSales, getOrder } from "../../services/dirvenpizzaria";
 import {
   SaleSmall,
   ContainerSmalls,
@@ -15,7 +15,7 @@ import { Product, Description } from "../Cart/style";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [sales, setSales] = useState([]);
   const [lastOrder, setLastOrder] = useState([]);
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ function Home() {
     if (user) {
       getLasOrder();
     }
-  }, []);
+  }, [user]);
 
   function getLasOrder() {
     const config = { headers: { Authorization: `Bearer ${user.token}` } };
@@ -33,7 +33,7 @@ function Home() {
       setLastOrder(res.data);
     });
     promise.catch((error) => {
-      console.log(error.data);
+      alert(error.data);
     });
   }
 
@@ -43,7 +43,7 @@ function Home() {
       setSales(res.data);
     });
     promise.catch((error) => {
-      console.log(error.data);
+      alert(error.data);
     });
   }
   useEffect(Sales, []);
@@ -53,7 +53,6 @@ function Home() {
       navigate("/sign-in");
     }
   }
-  console.log(lastOrder);
 
   return (
     <>
@@ -80,7 +79,7 @@ function Home() {
             {sales.map(function (sale) {
               return (
                 <SaleSmall to="/sales">
-                  <img src={sale.image} />
+                  <img src={sale.image} alt={sale.name} />
                 </SaleSmall>
               );
             })}
@@ -93,7 +92,7 @@ function Home() {
             {sales.map(function (sale) {
               return (
                 <SaleSmallDiv onClick={handleConfirm}>
-                  <img src={sale.image} />
+                  <img src={sale.image} alt={sale.name} />
                 </SaleSmallDiv>
               );
             })}

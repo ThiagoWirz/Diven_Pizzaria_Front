@@ -1,15 +1,15 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./Home";
-import Login from "./Login";
-import SignUp from "./SignUp";
+import Home from "./Pages/Home";
+import Login from "./Pages/Login";
+import SignUp from "./Pages/SignUp";
 import UserContext from "./contexts/userContext";
 import CartContext from "./contexts/cartContext";
 import "./styles/reset.css";
 import "./styles/style.css";
 import { useState } from "react";
-import CartPage from "./Cart";
-import Menu from "./Menu";
-import Sales from "./Sales";
+import CartPage from "./Pages/Cart";
+import Menu from "./Pages/Menu";
+import Sales from "./Pages/Sales";
 
 function App() {
   const lastUser = JSON.parse(localStorage.getItem("last-user"));

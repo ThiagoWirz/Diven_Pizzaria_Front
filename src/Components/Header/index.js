@@ -1,9 +1,9 @@
-import logo from "../assets/icone.jpg";
+import logo from "../../assets/icone.jpg";
 import { User, Cart, Logo, ContainerRight, TopBar, Counter } from "./style";
-import UserContext from "../contexts/userContext";
+import UserContext from "../../contexts/userContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import CartContext from "../contexts/cartContext";
+import CartContext from "../../contexts/cartContext";
 
 function Header() {
   const { user, setUser } = useContext(UserContext);
@@ -27,7 +27,7 @@ function Header() {
   return (
     <TopBar>
       <Logo to="/">
-        <img src={logo} />
+        <img src={logo} alt="Driven Logo" />
       </Logo>
       <ContainerRight>
         {user && (
