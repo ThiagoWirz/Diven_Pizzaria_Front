@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const BASE_URL = "https://driven-pizzaria.herokuapp.com";
-// const BASE_URL = "http://localhost:5000";
 
 function signUp(formData) {
   const promise = axios.post(`${BASE_URL}/auth/sign-up`, formData);

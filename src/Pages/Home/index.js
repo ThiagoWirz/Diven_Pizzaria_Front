@@ -64,17 +64,24 @@ function Home() {
       {user ? (
         <ContainerSales>
           <h1>Bem-Vindo: {user.name}!</h1>
-          <h1>Seu ultimo pedido:</h1>
-          <LastOrder>
-            {lastOrder.map((p, i) => (
-              <Product>
-                <img src={p.image} alt={p.name} />
-                <Description>
-                  <h2>{p.name}</h2>
-                </Description>
-              </Product>
-            ))}
-          </LastOrder>
+          {lastOrder.length !== 0 ? (
+            <>
+              <h1>Seu ultimo pedido:</h1>
+              <LastOrder>
+                {lastOrder.map((p, i) => (
+                  <Product>
+                    <img src={p.image} alt={p.name} />
+                    <Description>
+                      <h2>{p.name}</h2>
+                    </Description>
+                  </Product>
+                ))}
+              </LastOrder>{" "}
+            </>
+          ) : (
+            <h1>Nenhum pedido realizado.</h1>
+          )}
+
           <ContainerSmalls>
             {sales.map(function (sale) {
               return (
