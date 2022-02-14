@@ -28,6 +28,11 @@ const Selector = styled(Link)`
 const ContainerSales = styled.div`
   width: 100%;
   height: auto;
+  h1 {
+    font-weight: bold;
+    margin: 0 20px 10px 20px;
+    font-size: 20px;
+  }
 `;
 const ContainerSmalls = styled.div`
   display: flex;
@@ -51,6 +56,13 @@ const SaleSmallDiv = styled.div`
     height: 150px;
   }
 `;
+
+const LastOrder = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 0 10px 20px;
+`;
 export {
   SaleSmall,
   ContainerSmalls,
@@ -58,4 +70,5 @@ export {
   Selector,
   ContainerSelection,
   SaleSmallDiv,
+  LastOrder,
 };
